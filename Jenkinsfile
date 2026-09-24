@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'Frontend'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/mohamedkashifasrar/dev-flo.git'
+            }
+        }
+
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+       }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+    }
+}
